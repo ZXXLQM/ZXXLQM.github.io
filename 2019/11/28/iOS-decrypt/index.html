@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS逆向," />
 
 
 
@@ -79,15 +79,23 @@
 
 
 
-<meta name="description" content="树叶的一生，难道只是为了归根吗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;index.html">
+<meta name="description" content="应用商店下载的app，都是进过加密过的，用hopper或者ida完全分析不了。那是不是就没办法了呢？其实不然，解铃还须系铃人，要想得到解密后的文件，还是要依靠苹果爸爸啊！！！首先，我们知道，加密后的应用，如果不解密的话，苹果自己都不知道怎么去解析可执行文件，所以当设备运行应用时，加载进内存中的数据，肯定是经过解密后的数据，因此咱们只需把内存里的对应的解密部分dump下来即可。这里介绍一个砸壳工具：">
+<meta name="keywords" content="iOS逆向">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS应用砸壳">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;index.html">
 <meta property="og:site_name" content="sweetloser Blog">
-<meta property="og:description" content="树叶的一生，难道只是为了归根吗">
+<meta property="og:description" content="应用商店下载的app，都是进过加密过的，用hopper或者ida完全分析不了。那是不是就没办法了呢？其实不然，解铃还须系铃人，要想得到解密后的文件，还是要依靠苹果爸爸啊！！！首先，我们知道，加密后的应用，如果不解密的话，苹果自己都不知道怎么去解析可执行文件，所以当设备运行应用时，加载进内存中的数据，肯定是经过解密后的数据，因此咱们只需把内存里的对应的解密部分dump下来即可。这里介绍一个砸壳工具：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-27T04:56:56.143Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;2.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;3.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;4.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;5.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;6.png">
+<meta property="og:updated_time" content="2019-11-28T07:34:01.897Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;iOS-decrypt&#x2F;1.png">
 
 
 
@@ -117,13 +125,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/28/iOS-decrypt/"/>
 
 
 
 
 
-  <title>categories | sweetloser Blog</title>
+  <title>iOS应用砸壳 | sweetloser Blog</title>
   
 
 
@@ -238,40 +246,144 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/28/iOS-decrypt/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sweetloser">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sweetloser Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">categories</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="category-all-page">
-            <div class="category-all-title">
-                暂无分类
-            </div>
-            <div class="category-all">
+          <h1 class="post-title" itemprop="name headline">iOS应用砸壳</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
               
-            </div>
-          </div>
-        
-      </div>
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-28T15:21:31+08:00">
+                2019-11-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <p>应用商店下载的app，都是进过加密过的，用hopper或者ida完全分析不了。那是不是就没办法了呢？<br>其实不然，解铃还须系铃人，要想得到解密后的文件，还是要依靠苹果爸爸啊！！！<br>首先，我们知道，加密后的应用，如果不解密的话，苹果自己都不知道怎么去解析可执行文件，所以当设备运行应用时，加载进内存中的数据，肯定是经过解密后的数据，因此咱们只需把内存里的对应的解密部分dump下来即可。<br>这里介绍一个砸壳工具：<a href="https://link.jianshu.com/?t=https%3A%2F%2Fgithub.com%2Fstefanesser%2Fdumpdecrypted%2Farchive%2Fmaster.zip" target="_blank" rel="noopener">dumpdecrypted</a><br>该工具的原理就是在程序运行之后注入一个动态库，然在内存中dump下解密之后的部分。<br>原理和实现不赘述，想进一步了解，可以查看源码。<br>这里简单讲一下如何用该工具进行解密app：<br>1、运行源码，生成动态链接库。<br>解压下载下来的<code>dumpdecrypted-master.zip</code>到当前目录；打开终端，<code>cd</code>到该目录。<br><img src="/2019/11/28/iOS-decrypt/1.png" alt="image.png"><br>在该目录下直接运行<code>make</code>。<br><img src="/2019/11/28/iOS-decrypt/2.png" alt="image.png"><br>如果运行不成功，报错找不到文件。运行<code>xcode-select --print-path</code> ，查看目录是否指向<code>/Applications/Xcode.app/Contents/Developer</code>。如果不是，则用<code>xcode-select -s /Applications/Xcode.app/Contents/Developer</code>修改一下。再执行make。<br>运行成功，会在当前目录生成<code>dumpdecrypted.dylib</code>动态库。<br>2、注入动态库<br><code>ssh</code>登录进手机，用<code>ps</code>命令查看目标app所在的目录。<br><img src="/2019/11/28/iOS-decrypt/3.png" alt="image.png"><br>记住这个目录。待会儿有用。<br>再用cycript获取目标app的沙盒目录。<br><img src="/2019/11/28/iOS-decrypt/4.png" alt="image.png"><br>获取到目标app的沙盒目录之后，退出<code>cycript</code>（<code>control+D</code>），将第一步得到的<code>dumpdecrypted.dylib</code>，导入到沙盒目录（导入方法有很多，scp、PP助手、ifiles等）。<br><code>cd</code>到沙盒目录，运行<code>DYLD_INSERT_LIBRARIES=dumpdecrypted.dylib /var/mobile/Containers/Bundle/Application/DDFA8DC8-F19A-4A6F-932B-22E8170BB22D/HDXinHuaDict.app/HDXinHuaDict</code>。<br><img src="/2019/11/28/iOS-decrypt/5.png" alt="image.png"><br>看到一系列的<code>+</code>就说明运行成功，在沙盒目录下就会有被解密的二进制文件。<br><img src="/2019/11/28/iOS-decrypt/6.png" alt="image.png"><br>将该文件导出即可。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS%E9%80%86%E5%90%91/" rel="tag"># iOS逆向</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/28/Resignature-problem-set/" rel="prev" title="Resignature-problem-set">
+                Resignature-problem-set <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
