@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="iOS逆向," />
 
 
 
@@ -79,15 +79,19 @@
 
 
 
-<meta name="description" content="树叶的一生，难道只是为了归根吗">
+<meta name="description" content="问题一：Code signing fails with error &amp;#39;resource fork, Finder information, or similar detritus not allowed&amp;#39;问题描述：应用砸完壳，把包拉出来，里面的Plugins删除，替换可执行文件，打开Xcode—&amp;gt;MonkeyDev，创建MonkeyApp项目，把整理好的.app文件放到Tar">
+<meta name="keywords" content="iOS逆向">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Resignature-problem-set">
+<meta property="og:title" content="重签名App问题汇总">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;Resignature-problem-set&#x2F;index.html">
 <meta property="og:site_name" content="sweetloser Blog">
-<meta property="og:description" content="树叶的一生，难道只是为了归根吗">
+<meta property="og:description" content="问题一：Code signing fails with error &amp;#39;resource fork, Finder information, or similar detritus not allowed&amp;#39;问题描述：应用砸完壳，把包拉出来，里面的Plugins删除，替换可执行文件，打开Xcode—&amp;gt;MonkeyDev，创建MonkeyApp项目，把整理好的.app文件放到Tar">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-28T07:29:46.863Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;Resignature-problem-set&#x2F;1.png">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;Resignature-problem-set&#x2F;2.png">
+<meta property="og:updated_time" content="2019-11-28T07:39:47.797Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;28&#x2F;Resignature-problem-set&#x2F;1.png">
 
 
 
@@ -123,7 +127,7 @@
 
 
 
-  <title>Resignature-problem-set | sweetloser Blog</title>
+  <title>重签名App问题汇总 | sweetloser Blog</title>
   
 
 
@@ -267,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Resignature-problem-set</h1>
+          <h1 class="post-title" itemprop="name headline">重签名App问题汇总</h1>
         
 
         <div class="post-meta">
@@ -317,7 +321,10 @@
       
 
       
-        
+        <h4 id="问题一：Code-signing-fails-with-error-39-resource-fork-Finder-information-or-similar-detritus-not-allowed-39"><a href="#问题一：Code-signing-fails-with-error-39-resource-fork-Finder-information-or-similar-detritus-not-allowed-39" class="headerlink" title="问题一：Code signing fails with error &#39;resource fork, Finder information, or similar detritus not allowed&#39;"></a>问题一：<code>Code signing fails with error &#39;resource fork, Finder information, or similar detritus not allowed&#39;</code></h4><p>问题描述：<br>应用砸完壳，把包拉出来，里面的Plugins删除，替换可执行文件，打开Xcode—&gt;MonkeyDev，创建MonkeyApp项目，把整理好的.app文件放到TargetApp目录，一系列操作行云流水，点完运行，双手托腮，嘴角上扬，静待<code>Build succeeded</code>.。<br>然而，上扬的嘴角定格在<code>Codesign failed</code>那一刻。<br><img src="/2019/11/28/Resignature-problem-set/1.png" alt="image.png"><br>看着这个错，也是一脸懵逼。<br>查阅相关资料才发现，原来，用<code>Finder</code>的<code>显示包内容</code>查看.app文件夹，会将<code>Finder</code>的一些查找信息以扩展属性的方式添加到这些文件中，而代码签名在iOS10之后，不再允许应用程序包中的任何文件具有包含Finder信息的扩展属性。<br>所以理论上，只要去除这些扩展属性，代码签名应该就没问题了。<br>那么怎么去除这些扩展属性呢？<br><code>xattr</code>命令可以对文件的扩展属性进行查看、增加、删除和清空，因此用<code>xattr</code>操作一波。<br>使用<code>-c -r</code>参数来递归清空包内的所有文件的扩展属性。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt; xattr -cr XXX.app</span><br></pre></td></tr></table></figure>
+<p>再次运行Xcode，完美！！！<br><img src="/2019/11/28/Resignature-problem-set/2.png" alt="image.png"></p>
+
       
     </div>
     
@@ -331,6 +338,12 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS%E9%80%86%E5%90%91/" rel="tag"># iOS逆向</a>
+          
+        </div>
       
 
       
@@ -350,6 +363,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/28/root-password-reset/" rel="prev" title="越狱手机root密码重置">
+                越狱手机root密码重置 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -401,8 +418,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -417,7 +443,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">13</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -430,7 +456,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -463,6 +489,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#问题一：Code-signing-fails-with-error-39-resource-fork-Finder-information-or-similar-detritus-not-allowed-39"><span class="nav-number">1.</span> <span class="nav-text">问题一：Code signing fails with error &#39;resource fork, Finder information, or similar detritus not allowed&#39;</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
