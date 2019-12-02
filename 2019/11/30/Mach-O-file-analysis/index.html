@@ -99,7 +99,10 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;10.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;11.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;12.png">
-<meta property="og:updated_time" content="2019-11-30T16:14:35.215Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;13.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;14.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;15.png">
+<meta property="og:updated_time" content="2019-12-02T05:14:03.725Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;11&#x2F;30&#x2F;Mach-O-file-analysis&#x2F;1.jpg">
 
@@ -373,7 +376,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  9 分钟
+                  10 分钟
                 </span>
               
             </div>
@@ -490,6 +493,26 @@
 
 <p>用上述公式计算出文件偏移：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sel_offset=<span class="number">0x0100365c2f</span><span class="number">-0x10042B1F8</span>+<span class="number">4370936</span> = <span class="number">0x365C2F</span>;</span><br><span class="line">type_offset=<span class="number">0x01003d6ced</span><span class="number">-0x10042B1F8</span>+<span class="number">4370936</span> = <span class="number">0x3D6CED</span>;</span><br><span class="line">imp_offset=<span class="number">0x010000587c</span><span class="number">-0x10042B1F8</span>+<span class="number">4370936</span> = <span class="number">0x587C</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看sel</li>
+</ul>
+<p><img src="/2019/11/30/Mach-O-file-analysis/13.png" alt="13"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sel = initWithCustomFrame:</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看type</li>
+</ul>
+<p><img src="/2019/11/30/Mach-O-file-analysis/14.png" alt="14"></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">type = <span class="string">"@48@0:8&#123;CGRect=&#123;CGPoint=dd&#125;&#123;CGSize=dd&#125;&#125;16"</span>;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看imp</li>
+</ul>
+<p>imp指向的是代码段，所以这里直接在ida上查看</p>
+<p><img src="/2019/11/30/Mach-O-file-analysis/15.png" alt="15"></p>
+<p>可以看出，该偏移正好对上<code>[WXShotSendPersonCardView initWithCustomFrame:]</code>的实现部分。</p>
+
       
     </div>
     
