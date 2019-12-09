@@ -98,7 +98,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;symbol-binds&#x2F;10.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;symbol-binds&#x2F;11.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;symbol-binds&#x2F;12.png">
-<meta property="og:updated_time" content="2019-12-09T14:05:52.582Z">
+<meta property="og:updated_time" content="2019-12-09T14:18:32.996Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2019&#x2F;12&#x2F;09&#x2F;symbol-binds&#x2F;1.png">
 
@@ -356,7 +356,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  746 字
+                  745 字
                 </span>
               
 
@@ -415,7 +415,7 @@
 <p>那么，理论上来说，如果我们尝试着修改这里的数据，是不是就会改变符号的查找的过程呢？</p>
 <h4 id="实践"><a href="#实践" class="headerlink" title="实践"></a>实践</h4><p>想的再多，都不如动手操作！！！</p>
 <p>新建一个工程，书写如下代码（main.m）:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__attribute__((constructor)) static void entry(int argc,char *argv[],char **apple,char **executablepath,struct mach_header_64 **mh_ptr)&#123;</span><br><span class="line">    </span><br><span class="line">    if (!strncmp(&quot;aaa&quot;, &quot;aaa&quot;, 3)) &#123;</span><br><span class="line">        printf(&quot;the same!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">__attribute__((constructor)) static void entry(int argc,char *argv[],char **apple,char **executablepath,struct mach_header_64 **mh_ptr)&#123;</span><br><span class="line">    </span><br><span class="line">    if (!strncmp(argv[0], &quot;aaa&quot;, 3)) &#123;</span><br><span class="line">        printf(&quot;the same!!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>并按照如上方式，查找到函数<code>strncmp</code>的Lazy Binding Info，做如下修改：</p>
 <p><img src="/2019/12/09/symbol-binds/7.png" alt="7"></p>
