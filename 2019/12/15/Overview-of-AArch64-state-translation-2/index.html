@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="sweetloser Blog">
 <meta property="og:description" content="A64中的条件执行在A64指令集中，有一些指令的执行是有条件的。有条件的执行的意思是：当条件判定为false时，PC往前执行，但是不会产生任何效果。（即当条件判定为false时，该指令相当于NOP）。 条件分支指令B.cond就是一个带条件的执行指令。条件代码以.为分隔符被追加在指令的后面，例如：B.EQ。 有一些根据Z条件标志位的条件分支指令，不能像它追加条件代码：  CBNZ CBZ TBNZ">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-15T16:04:14.056Z">
+<meta property="og:updated_time" content="2019-12-15T16:08:04.681Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -419,7 +419,7 @@
 <p>只有在指定了S后缀之后，指令才会更新条件标志位，CMP、CMN、CCMP、CCMN和TST指令除外，因为他们总是更新条件标志位。这些指令还确定更新哪些标志位。如果条件指令不执行，它不会影响标志位。</p>
 <p>例如：</p>
 <p>这个例子展示了改变A64代码中一些条件标志的读、修改、写过程。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MRS	X1,NZCV							;复制N、Z、C、V标志位的值到通用寄存器X1</span><br><span class="line">MOV	x2,#0X30000000</span><br><span class="line">BIC	X1,X1,X2						;将C、V位置0（29，28bit）</span><br><span class="line">ORR	x1,x1,#0XC0000000		;将N、Z位置1（31，30bit）</span><br><span class="line">MSR	NZCV,x1							;将X1的值复制到NZCV寄存器，更新条件标志位</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">MRS	X1,NZCV	;复制N、Z、C、V标志位的值到通用寄存器X1</span><br><span class="line">MOV	x2,#0X30000000</span><br><span class="line">BIC	X1,X1,X2	;将C、V位置0（29，28bit）</span><br><span class="line">ORR	x1,x1,#0XC0000000	;将N、Z位置1（31，30bit）</span><br><span class="line">MSR	NZCV,x1	;将X1的值复制到NZCV寄存器，更新条件标志位</span><br></pre></td></tr></table></figure>
 
 <h4 id="更新条件标志的浮点指令"><a href="#更新条件标志的浮点指令" class="headerlink" title="更新条件标志的浮点指令"></a>更新条件标志的浮点指令</h4><p>所有的A64浮点比较指令都可以更新条件标志。这些指令直接更新NZCV寄存器中的标志。</p>
 <h4 id="进位标志位（C）"><a href="#进位标志位（C）" class="headerlink" title="进位标志位（C）"></a>进位标志位（C）</h4><p>当操作的结果会产生进位或者当一个减法操作没有产生借位时，进位标志位（C）将会被设置为1，否则为0。</p>
@@ -602,7 +602,7 @@
 </tbody></table>
 <p>在A32指令和A64指令中，可选条件代码在语法描述中显示为{cond}。对于Thumb32指令，条件编码在IT指令之前。只有当条件标志满足指定条件时，才执行带有条件码的指令。</p>
 <p>下面是A32代码条件执行的一个例子:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ADD			r0,r1,r2		;r0 = r1 + R2,不要更新标志位</span><br><span class="line">ADDS		r0,r1,r2		;r0 = r1 + R2,更新标志位</span><br><span class="line">ADDSCS	r0,r1,r2		;如果C标志位被置为1，则ro = r1 + r2，并更新标志位</span><br><span class="line">CMP			r0,r1				;计算r0-r1（不保存结果），并更新标志位</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ADD	r0,r1,r2	;r0 = r1 + R2,不要更新标志位</span><br><span class="line">ADDS	r0,r1,r2	;r0 = r1 + R2,更新标志位</span><br><span class="line">ADDSCS	r0,r1,r2	;如果C标志位被置为1，则ro = r1 + r2，并更新标志位</span><br><span class="line">CMP	r0,r1	;计算r0-r1（不保存结果），并更新标志位</span><br></pre></td></tr></table></figure>
 
 <h4 id="执行速度的优化"><a href="#执行速度的优化" class="headerlink" title="执行速度的优化"></a>执行速度的优化</h4><p>要优化代码的执行速度，就必须详细了解目标系统的指令时间、分支预测逻辑和缓存行为。</p>
 <p>更多信息，请参阅处理器的技术参考手册。</p>
