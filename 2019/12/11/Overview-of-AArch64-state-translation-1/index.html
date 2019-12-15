@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="sweetloser Blog">
 <meta property="og:description" content="AArch64寄存器Arm处理器提供通用寄存器和专用寄存器以及一些在特定模式下可用的额外寄存器。 在 AArch64状态下，有以下寄存器是可用的： 31个64位通用寄存器（X0-X30），通用寄存器的低32位可用W0-W30访问。 4个栈指针寄存器：SP_EL0、SP_EL1、SP_EL2、SP_EL3。 3个异常链接寄存器：ELR_EL1、ELR_EL2、ELR_EL3。 3个程序状态寄存器：S">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-11T08:52:57.496Z">
+<meta property="og:updated_time" content="2019-12-11T12:11:03.759Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1.8k 字
+                  2.6k 字
                 </span>
               
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6 分钟
+                  9 分钟
                 </span>
               
             </div>
@@ -519,6 +519,59 @@
 <li>异常产生和异常返回。</li>
 </ul>
 <p>分支指令将目的地址加载到PC寄存器中。</p>
+<h4 id="在AArch64状态下的条件执行"><a href="#在AArch64状态下的条件执行" class="headerlink" title="在AArch64状态下的条件执行"></a>在AArch64状态下的条件执行</h4><p>在AArch64状态下，NZCV寄存器保存着N、Z、C、V标志位的值，处理器用这些标志位来决定是否执行条件指令。这些标志位被保存在NZCV寄存器的【31：28】位上。</p>
+<p>条件标志位在任何异常等级下都可以使用MSR和MRS指令进行访问。</p>
+<p>与A32相比，A64对条件的利用更少。例如在A64中：</p>
+<ul>
+<li>只有少数的指令可以set或test条件标志位。</li>
+<li>没有等效的T32 IT指令。</li>
+<li>唯一有条件执行的指令是条件分支指令B.cond，如果条件判定不成立（false），B.cond指令就像NOP指令一样。</li>
+</ul>
+<h4 id="在AArch64状态下的Q标志位"><a href="#在AArch64状态下的Q标志位" class="headerlink" title="在AArch64状态下的Q标志位"></a>在AArch64状态下的Q标志位</h4><p>在AArch64状态下，不能对Q标识位进行读写，因为在A64中没有在通用寄存器上操作的饱和算术指令。（in A64 there are no saturating arithmetic instructions that operate on the general purpose registers.）</p>
+<p>先进的SIMD饱和算法指令将浮点状态寄存器(FPSR)中的QC位设置为表示已经发生饱和。您可以通过Q助记符修饰符(例如SQADD)来识别这些指令。</p>
+<h4 id="流程状态"><a href="#流程状态" class="headerlink" title="流程状态"></a>流程状态</h4><p>在AArch64状态下，没有CPSR寄存器。但是可以通过访问CPSR中不同的部分作为流程状态字段。</p>
+<p>流程状态字段：</p>
+<ul>
+<li>N、Z、C、V条件标识位（NZCV）。</li>
+<li>当前寄存器位宽（nRW）。</li>
+<li>栈指针选择位（SPSel）。</li>
+<li>禁止中断位（DAIF）。</li>
+<li>当前异常等级（EL）。</li>
+<li>单步处理位（SS）。</li>
+<li>非法异常返回状态位（IL）。</li>
+</ul>
+<p>可以使用MSR指令写：</p>
+<ul>
+<li>NZCV寄存器中的N、Z、C、V标识位。</li>
+<li>DAIF寄存器中的禁止中断标识位。</li>
+<li>在异常等级为EL1或更高的情况下，SPSel寄存器的SP选择位。</li>
+</ul>
+<p>可以使用MRS指令读：</p>
+<ul>
+<li>NZCV寄存器中的N、Z、C、V标识位。</li>
+<li>DAIF寄存器中的禁止中断标识位。</li>
+<li>在异常等级为EL1或更高的情况下，CEL寄存器的异常等级位。</li>
+<li>在异常等级为EL1或更高的情况下，SPSel寄存器的SP选择位。</li>
+</ul>
+<p>当发生异常时，与当前异常级别关联的所有流程状态字段都存储在与目标异常级别关联的单个SPSR寄存器中。只能从SPSR访问SS、IL和nRW位。</p>
+<h4 id="AArch64下的SPSRs"><a href="#AArch64下的SPSRs" class="headerlink" title="AArch64下的SPSRs"></a>AArch64下的SPSRs</h4><p>保存的程序状态寄存器(SPSRs)是32位寄存器，当将异常带到使用AArch64状态的异常级别时，它存储当前异常级别的进程状态。这允许在处理异常之后恢复进程状态。</p>
+<p>在AArch64状态下，每个异常等级都有自己的SPSR寄存器：</p>
+<ul>
+<li>SPSR_EL1.</li>
+<li>SPSR_EL2.</li>
+<li>SPSR_EL3.</li>
+</ul>
+<p>当发生异常时，当前异常等级的进程状态会被写入当前异常等级对应的SPSR寄存器中。当从一个异常中返回时，异常处理程序使用正在返回的异常级别的SPSR来恢复正在返回的异常级别的流程状态。</p>
+<p><strong>请注意</strong></p>
+<p>从异常返回时，首选返回地址将从与正在返回的异常级别关联的ELR恢复。</p>
+<p>SPSRs存储了以下信息:</p>
+<ul>
+<li>N、Z、C、V标识位。</li>
+<li>D、A、I、F禁止中断位。</li>
+<li>寄存器位宽。</li>
+<li>执行模式。</li>
+<li>IL和SS位。</li>
+</ul>
 
       
     </div>
@@ -558,6 +611,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/15/Overview-of-AArch64-state-translation-2/" rel="prev" title="ARM文档翻译（一）----条件代码篇">
+                ARM文档翻译（一）----条件代码篇 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -637,7 +694,7 @@
               
                 <a href="/archives/%7C%7C%20archive">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -702,7 +759,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#AArch64寄存器"><span class="nav-number">1.</span> <span class="nav-text">AArch64寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在-AArch64状态下，有以下寄存器是可用的："><span class="nav-number">1.0.1.</span> <span class="nav-text">在 AArch64状态下，有以下寄存器是可用的：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常等级"><span class="nav-number">1.1.</span> <span class="nav-text">异常等级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR寄存器"><span class="nav-number">1.2.</span> <span class="nav-text">LR寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈指针寄存器"><span class="nav-number">1.3.</span> <span class="nav-text">栈指针寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AArch64状态下预声明的核心寄存器名字"><span class="nav-number">1.4.</span> <span class="nav-text">AArch64状态下预声明的核心寄存器名字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在AArch64下预声明的扩展寄存器"><span class="nav-number">1.5.</span> <span class="nav-text">在AArch64下预声明的扩展寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AArch64状态下的PC寄存器"><span class="nav-number">1.6.</span> <span class="nav-text">AArch64状态下的PC寄存器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#AArch64寄存器"><span class="nav-number">1.</span> <span class="nav-text">AArch64寄存器</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#在-AArch64状态下，有以下寄存器是可用的："><span class="nav-number">1.0.1.</span> <span class="nav-text">在 AArch64状态下，有以下寄存器是可用的：</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异常等级"><span class="nav-number">1.1.</span> <span class="nav-text">异常等级</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LR寄存器"><span class="nav-number">1.2.</span> <span class="nav-text">LR寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#栈指针寄存器"><span class="nav-number">1.3.</span> <span class="nav-text">栈指针寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AArch64状态下预声明的核心寄存器名字"><span class="nav-number">1.4.</span> <span class="nav-text">AArch64状态下预声明的核心寄存器名字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在AArch64下预声明的扩展寄存器"><span class="nav-number">1.5.</span> <span class="nav-text">在AArch64下预声明的扩展寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AArch64状态下的PC寄存器"><span class="nav-number">1.6.</span> <span class="nav-text">AArch64状态下的PC寄存器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在AArch64状态下的条件执行"><span class="nav-number">1.7.</span> <span class="nav-text">在AArch64状态下的条件执行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#在AArch64状态下的Q标志位"><span class="nav-number">1.8.</span> <span class="nav-text">在AArch64状态下的Q标志位</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#流程状态"><span class="nav-number">1.9.</span> <span class="nav-text">流程状态</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AArch64下的SPSRs"><span class="nav-number">1.10.</span> <span class="nav-text">AArch64下的SPSRs</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -736,7 +793,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.9k</span>
+    <span title="Site words total count">24.5k</span>
   
 </div>
 
