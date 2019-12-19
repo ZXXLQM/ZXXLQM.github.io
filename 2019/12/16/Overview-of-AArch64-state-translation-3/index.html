@@ -87,7 +87,7 @@
 <meta property="og:site_name" content="sweetloser Blog">
 <meta property="og:description" content="A64常用指令介绍A64常用指令 A64指令的寄存器限制在A64指令中，通用寄存器对于32位寄存器是W0-W30，对于64位寄存器是X0-X30。 不能通过数字来引用31寄存器，在一些指令说明中，可以使用以下名称来引用它： WSP ​        当前的栈指针（32bit） SP ​        当前的栈指针（64bit） WZR ​        零寄存器（32bit） XZR ​">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-12-19T03:28:46.394Z">
+<meta property="og:updated_time" content="2019-12-19T03:31:59.700Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -410,10 +410,13 @@
 <p><strong>Xm</strong></p>
 <p>​        64位第二个源通用寄存器</p>
 <h6 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h6><p>带进位的加法，将两个寄存器的值和C标志位的值相加，并将结果写入目标寄存器。</p>
-<p>Rd = Rn + Rm + C    （R代表 W 或者 X）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = Rn + Rm + C	（R代表 W 或者 X）。</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="ADCS"><a href="#ADCS" class="headerlink" title="ADCS"></a>ADCS</h5><p>带进位加法，且影响标志位。</p>
-<h6 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h6><p>ADCS    Wd,Wn,Wm    ;32 位</p>
-<p>ADCS    Xd,Xn,Xm    ;64位</p>
+<h6 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADCS	Wd,Wn,Wm	;32 位</span><br><span class="line"></span><br><span class="line">ADCS	Xd,Xn,Xm	;64位</span><br></pre></td></tr></table></figure>
+
 <h6 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h6><p><strong>Wd</strong></p>
 <p>32位目标通用寄存器</p>
 <p><strong>Wn</strong></p>
@@ -427,7 +430,10 @@
 <p><strong>Xm</strong></p>
 <p>64位第二个源通用寄存器</p>
 <h6 id="运算-1"><a href="#运算-1" class="headerlink" title="运算"></a>运算</h6><p>带标志位加法运算，并且结果影响标志位。将两个源寄存器的值和C标志位的值相加，并将结果写入目标寄存器。结果会更新（如果发生进位）条件标志位。</p>
-<p>Rd = Rn + Rm + C （R代表 W 或 X）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = Rn + Rm + C （R代表 W 或 X）。</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="ADD（带寄存器扩展运算）"><a href="#ADD（带寄存器扩展运算）" class="headerlink" title="ADD（带寄存器扩展运算）"></a>ADD（带寄存器扩展运算）</h5><p>带有寄存器扩展操作的加法运算。</p>
 <h6 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD	Wd|WSP,	Wn|WSP,	Wm&#123;,	extend&#123;#amount&#125;&#125;	;32位</span><br><span class="line"></span><br><span class="line">ADD	Xd|SP，	Xn|SP，	Rm&#123;,	extend&#123;amount&#125;&#125;	;64位</span><br></pre></td></tr></table></figure>
 
@@ -462,7 +468,10 @@
 <p><strong>amount</strong></p>
 <p>在0到4的范围内扩展后要应用的左移量，默认为0，当<code>extend</code>不存在时，<code>amount</code>也是不存在的，当<code>extend</code>是LSL时，它是必需的；当<code>extend</code>存在但又不是LSL时，它是可选的。</p>
 <h6 id="运算-2"><a href="#运算-2" class="headerlink" title="运算"></a>运算</h6><p>带扩展寄存器的加法运算，将一个通用寄存器中的值和另一个带有符号扩展运算或者无符号扩展运算的通用寄存器的值相加，然后把结果写入到目标寄存器。从Rm寄存器扩展的参数可以是字节、半字、字或者双字。</p>
-<p>Rd = Rn = LSL（extend（Rm），amount）（R代表 W 或者 X）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = Rn = LSL（extend（Rm），amount）（R代表 W 或者 X）</span><br></pre></td></tr></table></figure>
+
+
+
 <h6 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h6><p><code>ADD</code>指令（64位寄存器）组合说明符</p>
 <table>
 <thead>
@@ -505,7 +514,7 @@
 </tr>
 </tbody></table>
 <h5 id="ADD（立即数）"><a href="#ADD（立即数）" class="headerlink" title="ADD（立即数）"></a>ADD（立即数）</h5><p>这个指令通常被用作MOV指令（从SP或者到SP）。</p>
-<h6 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ADD	Wd|WSP,	Wn|WSP,	#imm&#123;,	shift&#125;	;32位</span><br><span class="line"></span><br><span class="line">ADD	Xd|SP,	Xn|Sp,	#imm&#123;,	shift&#125;	;64位</span><br></pre></td></tr></table></figure>
+<h6 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD	Wd|WSP,	Wn|WSP,	#imm&#123;,	shift&#125;	;32位</span><br><span class="line">ADD	Xd|SP,	Xn|Sp,	#imm&#123;,	shift&#125;	;64位</span><br></pre></td></tr></table></figure>
 
 
 
@@ -521,7 +530,10 @@
 <p><strong>shift</strong></p>
 <p>被应用到立即数上的左移操作，默认是<code>LSL    #0</code>，可以是<code>LSL    #0</code>    或者<code>LSL    #12</code>。</p>
 <h6 id="运算-3"><a href="#运算-3" class="headerlink" title="运算"></a>运算</h6><p>将一个寄存器上的值和可选移位的立即数的值相加，再把结果写入到目标寄存器。</p>
-<p>Rd = Rn + shift( imm )（R代表 W 或者 X ）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = Rn + shift( imm )（R代表 W 或者 X ）</span><br></pre></td></tr></table></figure>
+
+
+
 <h5 id="ADD（带寄存器移位操作）"><a href="#ADD（带寄存器移位操作）" class="headerlink" title="ADD（带寄存器移位操作）"></a>ADD（带寄存器移位操作）</h5><h6 id="语法-4"><a href="#语法-4" class="headerlink" title="语法"></a>语法</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ADD	Wd,	Wn,	Wm&#123;,	shitf	#amount&#125;	;32位</span><br><span class="line">ADD	Xd,	Xn,	Xm&#123;,	shift	#amount&#125;	;64位</span><br></pre></td></tr></table></figure>
 
 
