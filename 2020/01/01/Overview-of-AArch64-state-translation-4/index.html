@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="ARM," />
 
 
 
@@ -79,14 +79,15 @@
 
 
 
-<meta name="description" content="树叶的一生，难道只是为了归根吗">
-<meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;tags&#x2F;index.html">
+<meta name="description" content="ADR基于PC寄存器的相对地址寻址。 语法ADR    Xd,    Label 注释Xd 64位目标通用寄存器。 Label 程序标签的地址可以通过它与该指令的偏移计算出。范围为正负1MB（±1MB）。 用法将一个立即数的值添加到PC值中，形成一个PC相对地址，并将结果写入目标寄存器。 ADRP基于PC寄存器的相对地址寻址（4KB）。 语法ADRP    Xd,    Label 注释Xd 64">
+<meta name="keywords" content="ARM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ARM文档翻译（三）----指令篇（二）">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2020&#x2F;01&#x2F;01&#x2F;Overview-of-AArch64-state-translation-4&#x2F;index.html">
 <meta property="og:site_name" content="sweetloser Blog">
-<meta property="og:description" content="树叶的一生，难道只是为了归根吗">
+<meta property="og:description" content="ADR基于PC寄存器的相对地址寻址。 语法ADR    Xd,    Label 注释Xd 64位目标通用寄存器。 Label 程序标签的地址可以通过它与该指令的偏移计算出。范围为正负1MB（±1MB）。 用法将一个立即数的值添加到PC值中，形成一个PC相对地址，并将结果写入目标寄存器。 ADRP基于PC寄存器的相对地址寻址（4KB）。 语法ADRP    Xd,    Label 注释Xd 64">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-11-27T04:57:03.361Z">
+<meta property="og:updated_time" content="2020-01-01T15:04:28.315Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -117,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://www.sweetloser.com/tags/"/>
+  <link rel="canonical" href="https://www.sweetloser.com/2020/01/01/Overview-of-AArch64-state-translation-4/"/>
 
 
 
 
 
-  <title>tags | sweetloser Blog</title>
+  <title>ARM文档翻译（三）----指令篇（二） | sweetloser Blog</title>
   
 
 
@@ -238,40 +239,220 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.sweetloser.com/2020/01/01/Overview-of-AArch64-state-translation-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="sweetloser">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="sweetloser Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">tags</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <div class="tag-cloud">
-            <div class="tag-cloud-title">
-                目前共计 4 个标签
+          <h1 class="post-title" itemprop="name headline">ARM文档翻译（三）----指令篇（二）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-01T14:44:52+08:00">
+                2020-01-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ARM/" itemprop="url" rel="index">
+                    <span itemprop="name">ARM</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/01/Overview-of-AArch64-state-translation-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/01/Overview-of-AArch64-state-translation-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  199 字
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  1 分钟
+                </span>
+              
             </div>
-            <div class="tag-cloud-tags">
-              <a href="/tags/ARM/" style="font-size: 12px; color: #ccc">ARM</a> <a href="/tags/Mac/" style="font-size: 12px; color: #ccc">Mac</a> <a href="/tags/iOS%E5%BC%80%E5%8F%91/" style="font-size: 30px; color: #111">iOS开发</a> <a href="/tags/iOS%E9%80%86%E5%90%91/" style="font-size: 21px; color: #6f6f6f">iOS逆向</a>
-            </div>
-          </div>
-        
-      </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
       
       
+
+      
+        <h5 id="ADR"><a href="#ADR" class="headerlink" title="ADR"></a>ADR</h5><p>基于PC寄存器的相对地址寻址。</p>
+<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><p>ADR    Xd,    Label</p>
+<h6 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h6><p><strong>Xd</strong></p>
+<p>64位目标通用寄存器。</p>
+<p><strong>Label</strong></p>
+<p>程序标签的地址可以通过它与该指令的偏移计算出。范围为正负1MB（±1MB）。</p>
+<h6 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h6><p>将一个立即数的值添加到PC值中，形成一个PC相对地址，并将结果写入目标寄存器。</p>
+<h5 id="ADRP"><a href="#ADRP" class="headerlink" title="ADRP"></a>ADRP</h5><p>基于PC寄存器的相对地址寻址（4KB）。</p>
+<h6 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h6><p>ADRP    Xd,    Label</p>
+<h6 id="注释-1"><a href="#注释-1" class="headerlink" title="注释"></a>注释</h6><p><strong>Xd</strong></p>
+<p>64位目标通用寄存器。</p>
+<p><strong>Label</strong></p>
+<p>要计算的标签的4KB页地址。它与此指令的页地址之间的偏移量，范围为±4GB。</p>
+<h6 id="用法-1"><a href="#用法-1" class="headerlink" title="用法"></a>用法</h6><p>将一个向左移动12位的即时值添加到PC值中，形成一个PC相对地址，并将结果写到目标寄存器中。</p>
+
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/ARM/" rel="tag"><i class="fa fa-tag"></i> ARM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/16/Overview-of-AArch64-state-translation-3/" rel="next" title="ARM文档翻译（三）----指令篇（一）">
+                <i class="fa fa-chevron-left"></i> ARM文档翻译（三）----指令篇（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -307,8 +488,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -378,6 +568,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#ADR"><span class="nav-number">1.</span> <span class="nav-text">ADR</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释"><span class="nav-number">1.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#用法"><span class="nav-number">1.3.</span> <span class="nav-text">用法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ADRP"><span class="nav-number">2.</span> <span class="nav-text">ADRP</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-1"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释-1"><span class="nav-number">2.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#用法-1"><span class="nav-number">2.3.</span> <span class="nav-text">用法</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
