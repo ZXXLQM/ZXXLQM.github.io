@@ -79,15 +79,15 @@
 
 
 
-<meta name="description" content="ASR（寄存器）算术右移（寄存器）。 这个指令是ASRV的别名。 等效指令为ASRV Wd, Wn, Wm。 语法ASR    Wd,    Wn,    Wm    ;32位 ASR    Xd,    Xn,    Xm    ;64位 注释Wd 32位目标通用寄存器。 Wn 32位第一个源通用寄存器。 Wm 32位第二个源通用寄存器，它的低5位保存着0~31的移位量。 Xd 64位目标通用寄">
+<meta name="description" content="B.cond条件分支 语法B.cond    Label 注释 cond 标准条件之一。 Label 条件满足时跳转的程序标签。它与该指令之间的偏移量，范围为±1MB。 使用以PC相对偏移量有条件地跳转到标签处。这不是子函数调用或者返回。 B分支（无条件）。 语法B Label 注释Label 无条件跳转的程序分支标签。它与该指令地址之间的偏移量。范围为±128MB。分支可以向前或者向后跳转128">
 <meta name="keywords" content="ARM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ARM文档翻译（六）----指令篇（四）">
-<meta property="og:url" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2020&#x2F;01&#x2F;11&#x2F;Overview-of-AArch64-state-translation-6&#x2F;index.html">
+<meta property="og:title" content="ARM文档翻译（七）----指令篇（五）">
+<meta property="og:url" content="https:&#x2F;&#x2F;www.sweetloser.com&#x2F;2020&#x2F;01&#x2F;11&#x2F;Overview-of-AArch64-state-translation-7&#x2F;index.html">
 <meta property="og:site_name" content="sweetloser Blog">
-<meta property="og:description" content="ASR（寄存器）算术右移（寄存器）。 这个指令是ASRV的别名。 等效指令为ASRV Wd, Wn, Wm。 语法ASR    Wd,    Wn,    Wm    ;32位 ASR    Xd,    Xn,    Xm    ;64位 注释Wd 32位目标通用寄存器。 Wn 32位第一个源通用寄存器。 Wm 32位第二个源通用寄存器，它的低5位保存着0~31的移位量。 Xd 64位目标通用寄">
+<meta property="og:description" content="B.cond条件分支 语法B.cond    Label 注释 cond 标准条件之一。 Label 条件满足时跳转的程序标签。它与该指令之间的偏移量，范围为±1MB。 使用以PC相对偏移量有条件地跳转到标签处。这不是子函数调用或者返回。 B分支（无条件）。 语法B Label 注释Label 无条件跳转的程序分支标签。它与该指令地址之间的偏移量。范围为±128MB。分支可以向前或者向后跳转128">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2020-01-11T04:32:29.508Z">
+<meta property="og:updated_time" content="2020-01-11T07:48:06.572Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -118,13 +118,13 @@
 
 
 
-  <link rel="canonical" href="https://www.sweetloser.com/2020/01/11/Overview-of-AArch64-state-translation-6/"/>
+  <link rel="canonical" href="https://www.sweetloser.com/2020/01/11/Overview-of-AArch64-state-translation-7/"/>
 
 
 
 
 
-  <title>ARM文档翻译（六）----指令篇（四） | sweetloser Blog</title>
+  <title>ARM文档翻译（七）----指令篇（五） | sweetloser Blog</title>
   
 
 
@@ -251,7 +251,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.sweetloser.com/2020/01/11/Overview-of-AArch64-state-translation-6/">
+    <link itemprop="mainEntityOfPage" href="https://www.sweetloser.com/2020/01/11/Overview-of-AArch64-state-translation-7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="sweetloser">
@@ -268,7 +268,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ARM文档翻译（六）----指令篇（四）</h1>
+          <h1 class="post-title" itemprop="name headline">ARM文档翻译（七）----指令篇（五）</h1>
         
 
         <div class="post-meta">
@@ -280,7 +280,7 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-11T11:56:17+08:00">
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-11T14:11:55+08:00">
                 2020-01-11
               </time>
             
@@ -321,8 +321,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2020/01/11/Overview-of-AArch64-state-translation-6/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/11/Overview-of-AArch64-state-translation-6/" itemprop="commentCount"></span>
+                <a href="/2020/01/11/Overview-of-AArch64-state-translation-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/01/11/Overview-of-AArch64-state-translation-7/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -344,7 +344,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  414 字
+                  567 字
                 </span>
               
 
@@ -360,7 +360,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1 分钟
+                  2 分钟
                 </span>
               
             </div>
@@ -381,54 +381,83 @@
       
 
       
-        <h5 id="ASR（寄存器）"><a href="#ASR（寄存器）" class="headerlink" title="ASR（寄存器）"></a>ASR（寄存器）</h5><p>算术右移（寄存器）。</p>
-<p>这个指令是ASRV的别名。</p>
-<p>等效指令为<code>ASRV Wd, Wn, Wm</code>。</p>
-<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><p>ASR    Wd,    Wn,    Wm    ;32位</p>
-<p>ASR    Xd,    Xn,    Xm    ;64位</p>
-<h6 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h6><p><strong>Wd</strong></p>
-<p>32位目标通用寄存器。</p>
-<p><strong>Wn</strong></p>
-<p>32位第一个源通用寄存器。</p>
-<p><strong>Wm</strong></p>
-<p>32位第二个源通用寄存器，它的低5位保存着0~31的移位量。</p>
-<p><strong>Xd</strong></p>
-<p>64位目标通用寄存器。</p>
-<p><strong>Xn</strong></p>
-<p>64位第一个源通用寄存器。</p>
-<p><strong>Xm</strong></p>
-<p>64位第二个源通用寄存器，它的低6位保存着0~63的移位量。</p>
-<h6 id="运算"><a href="#运算" class="headerlink" title="运算"></a>运算</h6><p>算术右移指令，将一个寄存器的值右移一个可变位数，高位用符号位填充，并将结果写入目标寄存器。第二个源寄存器除以数据大小(即64或者32)得到的余数定义了第一个源寄存器右移的位数。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = ASR(Rn, Rm)	;R代表 W 或者 X</span><br></pre></td></tr></table></figure>
-
-<h5 id="ASR（立即数）"><a href="#ASR（立即数）" class="headerlink" title="ASR（立即数）"></a>ASR（立即数）</h5><p>算术右移（立即数）。</p>
-<p>这条指令是SBFM的别称。</p>
-<p>这条指令的等价指令是<code>SBFM Wd, Wn, #shift, #31</code>。</p>
-<h6 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h6><p>ASR    Wd,    Wn,    #shift    ;32位</p>
-<p>ASR    Xd,    Xn,    #shift    ;64位</p>
+        <h5 id="B-cond"><a href="#B-cond" class="headerlink" title="B.cond"></a>B.cond</h5><p>条件分支</p>
+<h6 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h6><p>B.cond    Label</p>
+<p>注释</p>
+<p><strong>cond</strong></p>
+<p>标准条件之一。</p>
+<p><strong>Label</strong></p>
+<p>条件满足时跳转的程序标签。它与该指令之间的偏移量，范围为±1MB。</p>
+<h6 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h6><p>以PC相对偏移量有条件地跳转到标签处。这不是子函数调用或者返回。</p>
+<h5 id="B"><a href="#B" class="headerlink" title="B"></a>B</h5><p>分支（无条件）。</p>
+<h6 id="语法-1"><a href="#语法-1" class="headerlink" title="语法"></a>语法</h6><p>B Label</p>
+<h6 id="注释"><a href="#注释" class="headerlink" title="注释"></a>注释</h6><p><strong>Label</strong></p>
+<p>无条件跳转的程序分支标签。它与该指令地址之间的偏移量。范围为±128MB。分支可以向前或者向后跳转128MB。</p>
+<h6 id="使用-1"><a href="#使用-1" class="headerlink" title="使用"></a>使用</h6><p>无条件分支跳转到到标签的相对偏移量。这不是子函数调用或返回。</p>
+<h5 id="BFC"><a href="#BFC" class="headerlink" title="BFC"></a>BFC</h5><p>清除位域，其余位不变。</p>
+<p>这条指令是BFM的别称。</p>
+<p>等效指令位<code>BFM Wd, WZR, #(-lsb MOD 32), #(width-1)</code>。</p>
+<h6 id="语法-2"><a href="#语法-2" class="headerlink" title="语法"></a>语法</h6><p>BFC    Wd,    #Lsb,    #width    ;32位</p>
+<p>BFC    Xd.    #Lsb,    #width    ;64位。</p>
 <h6 id="注释-1"><a href="#注释-1" class="headerlink" title="注释"></a>注释</h6><p><strong>Wd</strong></p>
 <p>32位目标通用寄存器。</p>
-<p><strong>Wn</strong></p>
-<p>32位源通用寄存器。</p>
-<p><strong>shift</strong></p>
+<p><strong>Lsb</strong></p>
 <p>取决于指令</p>
 <ul>
 <li>32位通用寄存器</li>
 </ul>
-<p>移位量，范围为0~31。</p>
+<p>目标寄存器位域起始位。范围为0~31。</p>
 <ul>
 <li>64位通用寄存器</li>
 </ul>
-<p>移位量，范围为0~63。</p>
+<p>目标寄存器位域起始位。范围为0~63。</p>
+<p><strong>width</strong></p>
+<p>取决于指令</p>
+<ul>
+<li>32位通用寄存器</li>
+</ul>
+<p>位域的宽度，范围为1 ~ 32-Lsb。</p>
+<ul>
+<li>64位通用寄存器</li>
+</ul>
+<p>位域的宽度，范围为1 ~ 64-Lsb。</p>
+<p><strong>Xd</strong></p>
+<p>64位目标通用寄存器。</p>
+<h6 id="架构支持"><a href="#架构支持" class="headerlink" title="架构支持"></a>架构支持</h6><p>支持Armv8.2及更好版本。</p>
+<h5 id="BFI"><a href="#BFI" class="headerlink" title="BFI"></a>BFI</h5><p>位域插入。</p>
+<p>这条指令是BFM的别称。</p>
+<p>这条指令的等效指令是<code>BFM Wd, Wn, #(-lsb MOD 32), #(width-1)</code>。</p>
+<h6 id="语法-3"><a href="#语法-3" class="headerlink" title="语法"></a>语法</h6><p>BFI    Wd,    Wn,    #Lsb,    #width    ;32位</p>
+<p>BFI    Xd,    Xn,    #lsb,    #width    ;64位</p>
+<h6 id="注释-2"><a href="#注释-2" class="headerlink" title="注释"></a>注释</h6><p><strong>Wd</strong></p>
+<p>32位目标通用寄存器。</p>
+<p><strong>Wn</strong></p>
+<p>32位源通用寄存器。</p>
+<p><strong>Lsb</strong></p>
+<p>取决于指令</p>
+<ul>
+<li>32位通用寄存器</li>
+</ul>
+<p>目标寄存器位域起始位，范围为0~31。</p>
+<ul>
+<li>64位通用寄存器</li>
+</ul>
+<p>慕白寄存器位域起始位，范围为0~63。</p>
+<p><strong>width</strong></p>
+<p>取决于指令</p>
+<ul>
+<li>32位通用寄存器</li>
+</ul>
+<p>位域的宽度，范围为1 ~ 32-Lsb。</p>
+<ul>
+<li>64位通用寄存器</li>
+</ul>
+<p>位域的宽度。范围为1 ~ 64-Lsb。</p>
 <p><strong>Xd</strong></p>
 <p>64位目标通用寄存器。</p>
 <p><strong>Xn</strong></p>
 <p>64位源通用寄存器。</p>
-<h6 id="运算-1"><a href="#运算-1" class="headerlink" title="运算"></a>运算</h6><p>算术右移指令（立即数），将一个寄存器的值右移立即数的值的位数，高位用符号位填充，并将结果写入目标寄存器。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Rd = ASR(Rn, shift)	;R代表 W 或者 X。</span><br></pre></td></tr></table></figure>
-
-
-
+<h6 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h6><p>位域插入将源寄存器中的任意数量的低阶位复制到目标寄存器中任意位置的相同数量的相邻位，而不改变其他位。</p>
 
       
     </div>
@@ -459,8 +488,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/01/09/Overview-of-AArch64-state-translation-5/" rel="next" title="ARM文档翻译（五）----指令篇（三）">
-                <i class="fa fa-chevron-left"></i> ARM文档翻译（五）----指令篇（三）
+              <a href="/2020/01/11/Overview-of-AArch64-state-translation-6/" rel="next" title="ARM文档翻译（六）----指令篇（四）">
+                <i class="fa fa-chevron-left"></i> ARM文档翻译（六）----指令篇（四）
               </a>
             
           </div>
@@ -468,10 +497,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/11/Overview-of-AArch64-state-translation-7/" rel="prev" title="ARM文档翻译（七）----指令篇（五）">
-                ARM文档翻译（七）----指令篇（五） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -616,7 +641,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#ASR（寄存器）"><span class="nav-number">1.</span> <span class="nav-text">ASR（寄存器）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释"><span class="nav-number">1.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#运算"><span class="nav-number">1.3.</span> <span class="nav-text">运算</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#ASR（立即数）"><span class="nav-number">2.</span> <span class="nav-text">ASR（立即数）</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-1"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释-1"><span class="nav-number">2.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#运算-1"><span class="nav-number">2.3.</span> <span class="nav-text">运算</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#B-cond"><span class="nav-number">1.</span> <span class="nav-text">B.cond</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法"><span class="nav-number">1.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用"><span class="nav-number">1.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#B"><span class="nav-number">2.</span> <span class="nav-text">B</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-1"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释"><span class="nav-number">2.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-1"><span class="nav-number">2.3.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BFC"><span class="nav-number">3.</span> <span class="nav-text">BFC</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-2"><span class="nav-number">3.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释-1"><span class="nav-number">3.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#架构支持"><span class="nav-number">3.3.</span> <span class="nav-text">架构支持</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#BFI"><span class="nav-number">4.</span> <span class="nav-text">BFI</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#语法-3"><span class="nav-number">4.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#注释-2"><span class="nav-number">4.2.</span> <span class="nav-text">注释</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#使用-2"><span class="nav-number">4.3.</span> <span class="nav-text">使用</span></a></li></ol></li></ol></div>
             
 
           </div>
