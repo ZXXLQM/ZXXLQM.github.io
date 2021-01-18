@@ -1,1 +1,1 @@
-{ "applinks": { "apps": [ ], "details": [ { "appID": "P4SDVKBS7C.com.bingxin.live", "paths": [ "*" ] } ] } }
+{"activitycontinuation": {"apps": ["P4SDVKBS7C.com.bingxin.live"]}, "applinks": { "apps": [ ], "details": [ { "appID": "P4SDVKBS7C.com.bingxin.live", "paths": [ "/bingxin/*" ] } ] } }
